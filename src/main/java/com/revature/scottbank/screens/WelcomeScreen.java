@@ -13,13 +13,12 @@ public class WelcomeScreen extends Screen {
 
     @Override
     public void render() throws Exception {
-
-        System.out.print("\n\nWelcome to ScottBank\n\n" +
+        String menu = "\n\nWelcome to ScottBank\n\n" +
                 "1) Log In\n" +
-                "2) Create A New Account\n" +
+                "2) Open A New Account\n" +
                 "3) Exit\n" +
-                "> ");
-
+                "> ";
+        System.out.print(menu);
         String userSelection = consoleReader.readLine();
 
         switch (userSelection) {
@@ -38,7 +37,6 @@ public class WelcomeScreen extends Screen {
             default:
                 System.out.println("\nInvalid Selection. Please try again.\n");
         }
-
     }
 
 }
