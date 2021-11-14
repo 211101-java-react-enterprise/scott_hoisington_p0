@@ -22,8 +22,6 @@ public class NewAcctScreen extends Screen {
         String email = consoleReader.readLine();
         System.out.print("Password: ");
         String password = consoleReader.readLine();
-        System.out.print("Deposit Amount: ");
-        String deposit = consoleReader.readLine();
     }
 
 }
