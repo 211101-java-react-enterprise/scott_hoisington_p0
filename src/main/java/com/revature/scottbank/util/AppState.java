@@ -12,6 +12,7 @@ public class AppState {
 
     private static boolean appRunning;
     private final ScreenRouter router;
+    private final Logger logger;
 
     public AppState() {
         appRunning = true;
@@ -22,11 +23,15 @@ public class AppState {
         AppUserDAO userDAO = new AppUserDAO();
         UserService userService = new UserService(userDAO);
 
+        logger = Logger.getLogger(true);
+        logger.log("Initializing app...");
+
         router.addScreen(new WelcomeScreen(consoleReader, router));
         router.addScreen(new NewAcctScreen(consoleReader, router, userService));
         router.addScreen(new LoginScreen(consoleReader, router, userService));
         router.addScreen(new DashboardScreen(consoleReader, router, userService));
 
+        logger.log("App initialized");
     }
 
     public void startup() {
