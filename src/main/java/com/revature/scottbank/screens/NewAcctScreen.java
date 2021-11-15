@@ -1,5 +1,8 @@
 package com.revature.scottbank.screens;
 
+import com.revature.scottbank.exceptions.InvalidRequestException;
+import com.revature.scottbank.exceptions.ResourcePersistenceException;
+import com.revature.scottbank.models.AppUser;
 import com.revature.scottbank.services.UserService;
 import com.revature.scottbank.util.ScreenRouter;
 
@@ -27,6 +30,16 @@ public class NewAcctScreen extends Screen {
         String email = consoleReader.readLine();
         System.out.print("Password: ");
         String password = consoleReader.readLine();
+        AppUser newUser = new AppUser(firstName,lastName,email,password);
+        try {
+            userService.registerNewUser(newUser);
+            System.out.println("\nSign Up was successful\n");
+            router.navigate("/login");
+        } catch (InvalidRequestException | ResourcePersistenceException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

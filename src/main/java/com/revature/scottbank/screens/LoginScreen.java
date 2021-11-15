@@ -1,5 +1,7 @@
 package com.revature.scottbank.screens;
 
+import com.revature.scottbank.exceptions.AuthenticationException;
+import com.revature.scottbank.exceptions.InvalidRequestException;
 import com.revature.scottbank.services.UserService;
 import com.revature.scottbank.util.ScreenRouter;
 
@@ -22,6 +24,12 @@ public class LoginScreen extends Screen {
         String email = consoleReader.readLine();
         System.out.print("Password: ");
         String password = consoleReader.readLine();
+        try {
+            userService.authUser(email, password);
+            router.navigate("/dashboard");
+        } catch (InvalidRequestException | AuthenticationException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
