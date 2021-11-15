@@ -1,6 +1,7 @@
 package com.revature.scottbank.util;
 
 import com.revature.scottbank.screens.Screen;
+import com.revature.scottbank.util.collections.LinkedList;
 
 public class ScreenRouter {
 

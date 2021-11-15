@@ -1,4 +1,4 @@
-package com.revature.scottbank.util;
+package com.revature.scottbank.util.collections;
 
 // Custom ADT (abstract data type)
 public interface Collection<T> {

@@ -1,4 +1,6 @@
-package com.revature.scottbank.util;
+package com.revature.scottbank.util.collections;
+
+import com.revature.scottbank.util.collections.List;
 
 public class LinkedList<T> implements List<T> {
 

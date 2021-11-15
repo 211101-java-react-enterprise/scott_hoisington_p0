@@ -2,7 +2,7 @@ package com.revature.scottbank.daos;
 
 import com.revature.scottbank.models.AppUser;
 import com.revature.scottbank.util.ConnectionFactory;
-import com.revature.scottbank.util.List;
+import com.revature.scottbank.util.collections.List;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
