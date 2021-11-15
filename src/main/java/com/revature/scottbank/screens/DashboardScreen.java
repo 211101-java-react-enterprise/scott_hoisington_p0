@@ -1,5 +1,6 @@
 package com.revature.scottbank.screens;
 
+import com.revature.scottbank.services.UserService;
 import com.revature.scottbank.util.ScreenRouter;
 
 import java.io.BufferedReader;
@@ -8,8 +9,12 @@ import static com.revature.scottbank.util.AppState.shutdown;
 
 public class DashboardScreen extends Screen {
 
-    public DashboardScreen(BufferedReader consoleReader, ScreenRouter router) {
+    private final UserService userService;
+
+    public DashboardScreen(BufferedReader consoleReader, ScreenRouter router,
+                           UserService userService) {
         super("/dashboard", consoleReader, router);
+        this.userService = userService;
     }
 
     @Override

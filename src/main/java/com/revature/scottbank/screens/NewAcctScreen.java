@@ -1,13 +1,18 @@
 package com.revature.scottbank.screens;
 
+import com.revature.scottbank.services.UserService;
 import com.revature.scottbank.util.ScreenRouter;
 
 import java.io.BufferedReader;
 
 public class NewAcctScreen extends Screen {
 
-    public NewAcctScreen(BufferedReader consoleReader, ScreenRouter router) {
+    private final UserService userService;
+
+    public NewAcctScreen(BufferedReader consoleReader, ScreenRouter router,
+                         UserService userService) {
         super("/new-acct", consoleReader, router);
+        this.userService = userService;
     }
 
     @Override
