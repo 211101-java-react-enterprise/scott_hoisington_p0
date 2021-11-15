@@ -1,14 +1,18 @@
 package com.revature.scottbank.services;
 
+import com.revature.scottbank.daos.AppUserDAO;
 import com.revature.scottbank.exceptions.AuthenticationException;
 import com.revature.scottbank.exceptions.InvalidRequestException;
+import com.revature.scottbank.exceptions.ResourcePersistenceException;
 import com.revature.scottbank.models.AppUser;
 
 public class UserService {
 
+    private final AppUserDAO userDAO;
     private AppUser sessionUser;
 
-    public UserService() {
+    public UserService(AppUserDAO userDAO) {
+        this.userDAO = userDAO;
         this.sessionUser = null;
     }
 
@@ -16,7 +20,19 @@ public class UserService {
 
     public boolean registerNewUser(AppUser newUser) {
         if (!isUserValid(newUser)) {
-            throw new InvalidRequestException("Please complete all information");
+            throw new InvalidRequestException("Please provide all " +
+                    "requested information");
+        }
+        boolean emailAvailable =
+                userDAO.findUserByEmail(newUser.getEmail()) == null;
+        if (!emailAvailable) {
+            throw new ResourcePersistenceException("There is already an " +
+                    "account using this email address");
+        }
+        AppUser registeredUser = userDAO.save(newUser);
+        if (registeredUser == null) {
+            throw new ResourcePersistenceException("The user could not be " +
+                    "persisted to the datasource");
         }
         return true;
     }
@@ -27,7 +43,7 @@ public class UserService {
             throw new InvalidRequestException("Email and password are required for logging " +
                     "in");
         }
-        AppUser authUser;
+        AppUser authUser = userDAO.findUserByEmailAndPassword(email, password);
         if (authUser == null) {
             throw new AuthenticationException();
         }

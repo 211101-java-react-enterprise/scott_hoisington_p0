@@ -9,17 +9,16 @@ public class AppUser extends Object {
     private String lastName;
     private String email;
     private String password;
-    private String acctNum;
 
     public AppUser(String firstName, String lastName, String email,
                    String password) {
-        this.id = "";
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.acctNum = "";
     }
+
+    public AppUser() { super(); }
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -35,8 +34,5 @@ public class AppUser extends Object {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
-
-    public String getAcctNum() { return acctNum; }
-    public void setAcctNum(String acctNum) { this.acctNum = acctNum; }
 
 }
