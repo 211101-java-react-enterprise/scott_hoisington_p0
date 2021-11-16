@@ -1,7 +1,5 @@
 package com.revature.scottbank.models;
 
-import java.util.Objects;
-
 public class AppUser extends Object {
 
     private String id;
