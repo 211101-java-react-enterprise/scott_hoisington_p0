@@ -19,7 +19,8 @@ public class DashboardScreen extends Screen {
 
     @Override
     public void render() throws Exception {
-        System.out.printf("\n%s %s's Account\n", "User", "Userton");
+        System.out.printf("\n%s %s\n", "User", "Userton");
+        System.out.printf("Account %s\n", "09245892039");
         System.out.printf("Balance: $%s\n", "100.00");
         String menu = "1) Deposit to Your Account\n" +
                 "2) Withdraw from Your Account\n" +
