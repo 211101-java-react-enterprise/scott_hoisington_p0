@@ -13,16 +13,16 @@ import java.util.UUID;
 
 public class AcctDAO implements CrudDAO<Account> {
 
-    @Override
-    public Account save(Account newAcct) {
+    public Account save(Account newAcct, AppUser user) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             newAcct.setId(UUID.randomUUID().toString());
-            String sql = "insert into accounts (acct_id, balance, holder) " +
+            newAcct.setHolderId(user.getId());
+            String sql = "insert into accounts (acct_id, balance, holder_id) " +
                     "values (?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, newAcct.getId());
             pstmt.setDouble(2, newAcct.getBalance());
-            pstmt.setString(3, newAcct.getHolder().getId());
+            pstmt.setString(3, newAcct.getHolderId());
             int rowsInserted = pstmt.executeUpdate();
             if (rowsInserted != 0) {
                 return newAcct;
@@ -32,6 +32,9 @@ public class AcctDAO implements CrudDAO<Account> {
         }
         return null;
     }
+
+    @Override
+    public Account save(Account newAcct) { return null; }
 
     @Override
     public List<Account> findAll() { return null; }
@@ -53,7 +56,7 @@ public class AcctDAO implements CrudDAO<Account> {
 
                 acct.setId(rs.getString("acct_id"));
                 acct.setBalance(rs.getDouble("balance"));
-                acct.setHolder(holder);
+                acct.setHolderId(holder.getId());
                 return acct;
             }
         } catch (SQLException e) {
