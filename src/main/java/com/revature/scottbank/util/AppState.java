@@ -1,8 +1,10 @@
 package com.revature.scottbank.util;
 
+import com.revature.scottbank.daos.AcctDAO;
 import com.revature.scottbank.daos.AppUserDAO;
 import com.revature.scottbank.models.AppUser;
 import com.revature.scottbank.screens.*;
+import com.revature.scottbank.services.AcctService;
 import com.revature.scottbank.services.UserService;
 
 import java.io.BufferedReader;
@@ -23,11 +25,15 @@ public class AppState {
         AppUserDAO userDAO = new AppUserDAO();
         UserService userService = new UserService(userDAO);
 
+        AcctDAO acctDAO = new AcctDAO();
+        AcctService acctService = new AcctService(acctDAO);
+
         logger = Logger.getLogger(true);
         logger.log("Initializing app...");
 
         router.addScreen(new WelcomeScreen(consoleReader, router));
-        router.addScreen(new NewAcctScreen(consoleReader, router, userService));
+        router.addScreen(new NewAcctScreen(consoleReader, router, userService
+                , acctService));
         router.addScreen(new LoginScreen(consoleReader, router, userService));
         router.addScreen(new DashboardScreen(consoleReader, router, userService));
 
