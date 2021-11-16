@@ -4,15 +4,15 @@ public class Account extends Object {
 
     private String id;
     private double balance;
-    private AppUser holder;
+    private String holderId;
 
-    public Account(String id, AppUser holder) {
-        this.id = id;
+    public Account() {
+        this.id = null;
         this.balance = 0.00d;
-        this.holder = holder;
+        this.holderId = null;
     }
 
-    public Account() { super(); }
+//    public Account() { super(); }
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -20,7 +20,7 @@ public class Account extends Object {
     public double getBalance() { return balance; }
     public void setBalance(double balance) { this.balance = balance; }
 
-    public AppUser getHolder() { return holder; }
-    public void setHolder(AppUser holder) { this.holder = holder; }
+    public String getHolderId() { return holderId; }
+    public void setHolderId(String id) { this.holderId = id; }
 
 }
