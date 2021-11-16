@@ -4,6 +4,7 @@
 
 # Compiled or packaged files and directories
 out/
+target/
 *.class
 *.jar
 
