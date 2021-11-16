@@ -24,7 +24,7 @@ public class UserService {
                     "requested information");
         }
         boolean emailAvailable =
-                userDAO.findUserByEmail(newUser.getEmail()) == null;
+                userDAO.findByEmail(newUser.getEmail()) == null;
         if (!emailAvailable) {
             throw new ResourcePersistenceException("There is already an " +
                     "account using this email address");
@@ -43,7 +43,7 @@ public class UserService {
             throw new InvalidRequestException("Email and password are required for logging " +
                     "in");
         }
-        AppUser authUser = userDAO.findUserByEmailAndPassword(email, password);
+        AppUser authUser = userDAO.findByEmailAndPassword(email, password);
         if (authUser == null) {
             throw new AuthenticationException();
         }
