@@ -35,7 +35,8 @@ public class ConnectionFactory {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(props.getProperty("url"),
-                    props.getProperty("email"), props.getProperty("password"));
+                    props.getProperty("username"), props.getProperty(
+                            "password"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
