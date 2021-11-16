@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class AppUserDAO implements CrudDAO<AppUser> {
 
-    public AppUser findUserByEmail(String email) {
+    public AppUser findByEmail(String email) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "select * from app_users where email = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -33,7 +33,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
         return null;
     }
 
-    public AppUser findUserByEmailAndPassword(String email, String password) {
+    public AppUser findByEmailAndPassword(String email, String password) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "select * from app_users where email = ? and " +
                     "password = ?";
