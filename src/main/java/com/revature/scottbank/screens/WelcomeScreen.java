@@ -13,7 +13,7 @@ public class WelcomeScreen extends Screen {
 
     @Override
     public void render() throws Exception {
-        String menu = "\n\nWelcome to ScottBank\n\n" +
+        String menu = "\n\nScottBank\n\n" +
                 "1) Log In\n" +
                 "2) Open A New Account\n" +
                 "3) Exit\n" +
@@ -29,7 +29,7 @@ public class WelcomeScreen extends Screen {
                 router.navigate("/new-acct");
                 break;
             case "3":
-                System.out.println("\nGoodbye. Come back soon.\n\n");
+                System.out.println("\nExiting Application...\n\n");
                 shutdown();
                 break;
             case "throw exception":
