@@ -19,7 +19,7 @@ public class DepositScreen extends Screen {
 
     @Override
     public void render() throws Exception {
-        System.out.print("Enter the amount you would like to deposit\n" +
+        System.out.print("\nEnter the amount you would like to deposit\n" +
                 "> $");
         String deposit = consoleReader.readLine();
         try {

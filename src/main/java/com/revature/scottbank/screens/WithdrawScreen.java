@@ -19,7 +19,7 @@ public class WithdrawScreen extends Screen {
 
     @Override
     public void render() throws Exception {
-        System.out.print("Enter the amount you would like to withdraw\n" +
+        System.out.print("\nEnter the amount you would like to withdraw\n" +
                 "> $");
         String withdrawal = consoleReader.readLine();
         try {
