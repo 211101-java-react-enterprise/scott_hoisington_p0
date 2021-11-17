@@ -61,4 +61,8 @@ public class UserService {
         return user.getPassword() != null && !user.getPassword().trim().equals("");
     }
 
+    public boolean isSessionActive() { return sessionUser != null; }
+
+    public void logout() { sessionUser = null; }
+
 }
