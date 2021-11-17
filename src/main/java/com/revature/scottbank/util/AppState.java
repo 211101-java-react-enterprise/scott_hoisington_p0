@@ -26,7 +26,7 @@ public class AppState {
         UserService userService = new UserService(userDAO);
 
         AcctDAO acctDAO = new AcctDAO();
-        AcctService acctService = new AcctService(acctDAO);
+        AcctService acctService = new AcctService(acctDAO, userService);
 
         logger = Logger.getLogger(true);
         logger.log("Initializing app...");
@@ -35,7 +35,12 @@ public class AppState {
         router.addScreen(new NewAcctScreen(consoleReader, router, userService
                 , acctService));
         router.addScreen(new LoginScreen(consoleReader, router, userService));
-        router.addScreen(new DashboardScreen(consoleReader, router, userService));
+        router.addScreen(new DashboardScreen(consoleReader, router,
+                userService, acctService));
+        router.addScreen(new DepositScreen(consoleReader, router,
+                userService, acctService));
+        router.addScreen(new WithdrawScreen(consoleReader, router,
+                userService, acctService));
 
         logger.log("App initialized");
     }
