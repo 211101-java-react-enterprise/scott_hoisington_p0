@@ -12,7 +12,7 @@ public class WithdrawScreen extends Screen {
     private final AcctService acctService;
 
     public WithdrawScreen(BufferedReader consoleReader, ScreenRouter router,
-                         AcctService acctService) {
+                          AcctService acctService) {
         super("/withdraw", consoleReader, router);
         this.acctService = acctService;
     }
@@ -21,7 +21,7 @@ public class WithdrawScreen extends Screen {
     public void render() throws Exception {
         System.out.print("Enter the amount you would like to withdraw\n" +
                 "> $");
-        Double withdrawal = Double.valueOf(consoleReader.readLine());
+        String withdrawal = consoleReader.readLine();
         try {
             acctService.makeWithdrawal(withdrawal);
             System.out.println("Withdrawal was successful");

@@ -21,7 +21,7 @@ public class DepositScreen extends Screen {
     public void render() throws Exception {
         System.out.print("Enter the amount you would like to deposit\n" +
                 "> $");
-        Double deposit = Double.valueOf(consoleReader.readLine());
+        String deposit = consoleReader.readLine();
         try {
             acctService.makeDeposit(deposit);
             System.out.println("Deposit was successful");
