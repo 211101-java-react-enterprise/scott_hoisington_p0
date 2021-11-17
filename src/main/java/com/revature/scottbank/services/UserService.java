@@ -18,7 +18,7 @@ public class UserService {
 
     public AppUser getSessionUser() { return sessionUser; }
 
-    public boolean registerNewUser(AppUser newUser) {
+    public void registerNewUser(AppUser newUser) {
         if (!isUserValid(newUser)) {
             throw new InvalidRequestException("Please provide all " +
                     "requested information");
@@ -34,7 +34,6 @@ public class UserService {
             throw new ResourcePersistenceException("The user could not be " +
                     "persisted to the datasource");
         }
-        return true;
     }
 
     public void authUser(String email, String password) {
@@ -49,10 +48,6 @@ public class UserService {
         }
         sessionUser = authUser;
     }
-
-    public void logout() { sessionUser = null; }
-
-    public boolean isSessionActive() { return sessionUser != null; }
 
     public boolean isUserValid(AppUser user) {
         if (user == null) return false;
