@@ -33,6 +33,24 @@ public class AcctDAO implements CrudDAO<Account> {
         return null;
     }
 
+    public Account findByHolderId(String holderId) {
+        Account acct = new Account();
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "select * from accounts where holder_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, holderId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                acct.setId(rs.getString("acct_id"));
+                acct.setBalance(rs.getDouble("balance"));
+                acct.setHolderId(rs.getString("holder_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return acct;
+    }
+
     @Override
     public Account save(Account newAcct) { return null; }
 
@@ -67,6 +85,17 @@ public class AcctDAO implements CrudDAO<Account> {
 
     @Override
     public boolean update(Account updatedObj) {
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "update accounts set balance = ? where acct_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setDouble(1, updatedObj.getBalance());
+            pstmt.setString(2, updatedObj.getId());
+            if (pstmt.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
