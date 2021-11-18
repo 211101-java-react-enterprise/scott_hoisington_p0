@@ -29,7 +29,7 @@ public class Logger {
             String formattedMsg = String.format(msg, args);
             logWriter.write(formattedMsg + "\n");
             if (printToConsole) {
-                System.out.println(formattedMsg);
+                System.out.println("");
             }
         } catch (IOException e) {
             e.printStackTrace();
