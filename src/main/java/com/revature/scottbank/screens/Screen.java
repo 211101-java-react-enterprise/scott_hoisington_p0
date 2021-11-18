@@ -10,14 +10,13 @@ public abstract class Screen {
     String route;
     BufferedReader consoleReader;
     ScreenRouter router;
-    Logger logger;
+    Logger logger = Logger.getLogger(false);
 
     public Screen(String route, BufferedReader consoleReader,
                   ScreenRouter router) {
         this.route = route;
         this.consoleReader = consoleReader;
         this.router = router;
-        logger = Logger.getLogger(true);
     }
 
     public String getRoute() {
